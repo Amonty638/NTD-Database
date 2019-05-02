@@ -25,3 +25,5 @@ list = employeeDao.select_all()
 
 for employee in list:
     print(employee.get_fname())
+
+print("TEST")
