@@ -27,3 +27,5 @@ for employee in list:
     print(employee.get_fname())
 
 print("TEST")
+
+print("Hi Robbie")
