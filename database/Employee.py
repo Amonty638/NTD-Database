@@ -21,6 +21,11 @@ class Employee:
                 "Salesperson #": self.get_salesperson_num()
                 }
 
+    def get_values_string(self):
+        row = "'"+ self.fname + "' , '" + self.lname + "' , " + self.salesperson_num + ") "
+
+        return row
+
     def set_fname(self,value):
         self.fname = str(value)
 
@@ -28,13 +33,13 @@ class Employee:
         self.lname = str(value)
 
     def set_salesperson_num(self,value):
-        self.salesperson_num = value
+        self.salesperson_num = str(value)
 
     def set_values_from_row(self,row):
 
         try:
             if len(row) < 3:
-                raise ValueError("Row does not have enough indicies")
+                raise ValueError("Row does not have enough indices")
 
             self.set_fname(str(row[0]))
             self.set_lname(str(row[1]))

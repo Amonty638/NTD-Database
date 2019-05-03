@@ -2,6 +2,7 @@ from database.Employee import Employee
 from database.Connect import Connect
 
 
+
 class EmployeeDAO(Connect):
     def __init__(self):
         Connect.__init__(self)
@@ -11,21 +12,50 @@ class EmployeeDAO(Connect):
         connect = Connect()
         connect.sql_execute('select * from employee')
         employee_list = []
-        for row in connect.cur:
 
+        for row in connect.cur:
             employee = Employee()
-            employee.set_values_from_row(list(row))
+            employee.set_values_from_row(row)
             employee_list.append(employee)
 
         return employee_list
 
-employeeDao = EmployeeDAO()
+    def select_by_salesperson_num(self,key):
+        connect = Connect()
+        connect.sql_execute('select * from employee where salesperson# =  ' + str(key) + '')
+        row = connect.cur.fetchone()
 
-list = employeeDao.select_all()
+        employee = Employee()
+        employee.set_values_from_row(row)
 
-for employee in list:
-    print(employee.get_fname())
+        return employee
 
-print("TEST")
+    def insert_employee(self,employee):
+        connect = Connect()
+        connect.cur.execute('insert into employee values( ' + employee.get_values_string())
+        connect.commit()
 
-print("Hi Robbie")
+
+    def delete_employee(self,key):
+        print("key in delete", key)
+        connect = Connect()
+        connect.cur.execute('delete from employee where salesperson# = ' + "'" + str(key) + "'")
+        connect.commit()
+
+
+# employeeDao = EmployeeDAO()
+#
+# employeeDao.delete_employee(99)
+#
+# newEmployee = Employee()
+# newEmployee.set_fname("John")
+# newEmployee.set_lname("Montano")
+# newEmployee.set_salesperson_num(99)
+#
+# employeeDao.insert_employee(newEmployee)
+#
+#
+# list = employeeDao.select_all()
+#
+# for item in list:
+#     print(item.get_fname())
