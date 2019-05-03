@@ -23,7 +23,7 @@ class Employee:
                 }
 
     def get_values_string(self):
-        row = "'"+ self.fname + "' , '" + self.lname + "' , " + self.salesperson_num + ") "
+        row = "'"+ self.fname + "' , '" + self.lname + "' , '" + self.salesperson_num + "') "
 
         return row
 

@@ -41,12 +41,11 @@ class EmployeeDAO(Connect):
         connect.sql_execute("update employee set " +
                             "fname = '" + employee.get_fname() + "'," +
                             "lname = '" + employee.get_lname() + "'," +
-                            "salesperson# = '" + employee.get_salesperson_num() + "' "+
+                            "salesperson# = '" + employee.get_salesperson_num() + "' " +
                             "where salesperson# = '" + employee.get_salesperson_num() + "'")
         connect.commit()
 
     def delete_employee(self,key):
-        print("key in delete", key)
         connect = Connect()
         connect.cur.execute('delete from employee where salesperson# = ' + "'" + str(key) + "'")
         connect.commit()
@@ -58,10 +57,10 @@ employeeDao = EmployeeDAO()
 # employeeDao.delete_employee(99)
 #
 # newEmployee = Employee()
-# newEmployee.set_fname("John")
+# newEmployee.set_fname("test")
 # newEmployee.set_lname("Montano")
-# newEmployee.set_salesperson_num(99)
-#
+# newEmployee.set_salesperson_num(6969)
+# print(newEmployee.get_values_string())
 # employeeDao.insert_employee(newEmployee)
 #
 #
