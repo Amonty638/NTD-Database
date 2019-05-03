@@ -39,6 +39,9 @@ class Connect:
     def sql_execute(self, command):
         self.cur.execute(command)
 
+    def commit(self):
+        self.db.commit()
+
 
 
 

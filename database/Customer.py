@@ -1,15 +1,15 @@
 #!/usr/bin/python
 
 class Customer:
-    def __init__(self,fname,lname,city,zip,state,email,phone,saddress):
-       self.fname = fname
-       self.lname = lname
-       self.city = city
-       self.zip = zip
-       self.state = state
-       self.email = email
-       self.phone = phone
-       self.saddress = saddress
+    def __init__(self):
+       self.fname = " "
+       self.lname = " "
+       self.city = " "
+       self.zip = 0
+       self.state = " "
+       self.email = " "
+       self.phone = " "
+       self.saddress = " "
 
 
     def get_fname(self):
@@ -35,6 +35,11 @@ class Customer:
 
     def get_saddress(self):
         return self.saddress
+
+    def get_value_string(self):
+        value = "'" + self.fname + "', '" + self.lname + "', '" + self.city + "', '" + self.zip + "', '" + self.state + "', '" + self.email + "', '" + self.phone + "', '" + self.saddress + "')"
+
+        return value
 
     def get_dictionary(self):
         return {"First Name": self.get_fname(),
