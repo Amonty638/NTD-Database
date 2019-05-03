@@ -15,7 +15,7 @@ class ItemDAO(Connect):
             item_list.append(item)
         return item_list
 
-    def select(self, key, hold_num):
+    def select_by_ntd_num_and_hold_num(self, key, hold_num):
         connect = Connect()
         connect.sql_execute('select * from item where ntd# = ' + "'" + str(key) + "' and hold# = " + "'" + hold_num + "'")
         row = connect.cur.fetchone()
