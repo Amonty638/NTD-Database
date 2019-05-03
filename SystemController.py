@@ -3,14 +3,14 @@ import SearchInventory
 import AddInventory
 import SearchOrder
 import CreateOrder
-
+from colorama import Fore, Back, Style
 
 def main():
 
     print("|--------------------------------------------------------------|")
     print("|  Welcome to the National Tile Distributors Inventory System  |")
     print("|--------------------------------------------------------------|")
-
+    print("")
     while True:
 
         print("Please enter the password to login (cap sensitive)")
@@ -29,6 +29,7 @@ def index():
     print("|------------------------|")
     print("|  Welcome to the Index  |")
     print("|------------------------|")
+    print("")
 
     while True:
         print("Press 1 to create an order")
