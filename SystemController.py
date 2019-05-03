@@ -27,12 +27,13 @@ def main():
 
 
 def index():
-    print("|------------------------|")
-    print("|  Welcome to the Index  |")
-    print("|------------------------|")
-    print("")
+
 
     while True:
+        print("|------------------------|")
+        print("|  Welcome to the Index  |")
+        print("|------------------------|")
+        print("")
         print("Press 1 to create an order")
         print("Press 2 to search for an order")
         print("Press 3 to add inventory")
