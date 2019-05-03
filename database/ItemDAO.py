@@ -23,6 +23,17 @@ class ItemDAO(Connect):
         item.set_values_from_row(row)
         return item
 
+    def select_by_hold_num(self,key):
+        connect = Connect()
+        connect.sql_execute('select * from item where hold# = ' + "'" + str(key) + "'")
+        item_list = []
+
+        for row in connect.cur:
+            item = Item()
+            item.set_values_from_row(row)
+            item_list.append(item)
+        return item_list
+
     def insert_item(self, itemObject):
         connect = Connect()
         print("Insert into Item values (" + itemObject.get_value_string())
@@ -48,7 +59,7 @@ class ItemDAO(Connect):
 
 
 #TESTING STUFF
-# item_dao = ItemDAO()
+#item_dao = ItemDAO()
 #
 # item = Item()
 #
@@ -79,3 +90,8 @@ class ItemDAO(Connect):
 # stuff = item_dao.select_all()
 # for things in stuff:
 #     print(things.get_dictionary())
+
+# list = item_dao.select_by_hold_num("18095")
+#
+# for item in list:
+#     print(item.get_dictionary())
