@@ -52,7 +52,7 @@ class EmployeeDAO(Connect):
 
 
 
-employeeDao = EmployeeDAO()
+#employeeDao = EmployeeDAO()
 #
 # employeeDao.delete_employee(99)
 #
