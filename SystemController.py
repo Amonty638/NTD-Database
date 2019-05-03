@@ -59,6 +59,7 @@ def index():
             SearchByEmployee.main()
 
         elif choice == "6":
+            print("GoodBye!")
             break
 
         else:
