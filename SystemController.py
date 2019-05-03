@@ -38,27 +38,26 @@ def index():
         print("Press 3 to add inventory")
         print("Press 4 to search inventory")
         print("Press 5 to search by Employee")
+        print("Press 6 to log out")
 
         choice = input()
 
         if choice == "1":
             CreateOrder.main()
-            break
 
         elif choice == "2":
             SearchOrder.main()
-            break
 
         elif choice == "3":
             AddInventory.main()
-            break
 
         elif choice == "4":
             SearchInventory.main()
-            break
 
         elif choice == "5":
             SearchByEmployee.main()
+
+        elif choice == "6":
             break
 
         else:

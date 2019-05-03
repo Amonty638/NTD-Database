@@ -2,4 +2,7 @@
 
 def main():
 
-    print("In Search Inventory")
+    print("|-----------------------------------|")
+    print("|  Welcome to the Search Inventory  |")
+    print("|-----------------------------------|")
+    print("")

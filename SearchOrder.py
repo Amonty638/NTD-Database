@@ -1,5 +1,10 @@
-
+from database.CustomerOrder import CustomerOrder
+from database.CustomerOrderDAO import CustomerOrderDAO
 
 def main():
 
-    print("In Search Order")
+    print("|-------------------------------|")
+    print("|  Welcome to the Search Order  |")
+    print("|-------------------------------|")
+    print("")
+

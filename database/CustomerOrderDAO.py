@@ -15,13 +15,23 @@ class CustomerOrderDAO(Connect):
             customer_order_list.append(customer_order)
         return customer_order_list
 
-    def select(self, key):
+    def select_by_hold_number(self, key):
         connect = Connect()
         connect.sql_execute('select * from customer_order where hold# = ' + "'" + str(key) + "'")
         row = connect.cur.fetchone()
         customer_order = CustomerOrder()
         customer_order.set_values_from_row(row)
         return customer_order
+
+    def select_by_customer_phone(self,key):
+        connect = Connect()
+        connect.sql_execute('select * from customer_order where phone# = ' + "'" + str(key) + "'")
+        customer_order_list = []
+        for row in connect.cur:
+            customer_order = CustomerOrder()
+            customer_order.set_values_from_row(row)
+            customer_order_list.append(customer_order)
+        return customer_order_list
 
     def insert_customer_order(self, customerOrderObject):
         connect = Connect()
@@ -50,7 +60,7 @@ class CustomerOrderDAO(Connect):
 
 #TESTING STUFF
 # custorder = CustomerOrder()
-# custorder_dao = CustomerOrderDAO()
+#custorder_dao = CustomerOrderDAO()
 # custorder.set_phone_num("123-123-1234")
 # custorder.set_delivery_address("330 Main street north reading ma")
 # custorder.set_description("Kitchen")
@@ -81,4 +91,10 @@ class CustomerOrderDAO(Connect):
 # stuff = custorder_dao.select_all()
 # for things in stuff:
 #     print(things.get_dictionary())
+
+
+# orders = custorder_dao.select_by_customer_phone("123-123-1234")
+#
+# for item in orders:
+#     print(item.get_dictionary())
 
