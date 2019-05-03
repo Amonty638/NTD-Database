@@ -38,7 +38,6 @@ class Customer:
 
     def get_value_string(self):
         value = "'" + self.fname + "', '" + self.lname + "', '" + self.city + "', '" + self.zip + "', '" + self.state + "', '" + self.email + "', '" + self.phone + "', '" + self.saddress + "')"
-
         return value
 
     def get_dictionary(self):

@@ -6,7 +6,7 @@ import cx_Oracle
 class Connect:
 
     def __init__(self):
-        print("Attempting to connect")
+        #print("Attempting to connect")
         self.ip = 'stonehillcsc325.cjjvanphib99.us-west-2.rds.amazonaws.com'
         self.port = 1521
         self.SID = 'ORCL'

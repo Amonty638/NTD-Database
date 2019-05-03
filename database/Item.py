@@ -1,11 +1,11 @@
 #!/usr/bin/python
 
 class Item:
-    def __init__(self,ntd_num,quantity,total_cost,hold_num):
-        self.ntd_num = ntd_num
-        self.quantity = quantity
-        self.total_cost = total_cost
-        self.hold_num = hold_num
+    def __init__(self):
+        self.ntd_num = " "
+        self.quantity = " "
+        self.total_cost = " "
+        self.hold_num = " "
 
     def get_ntd_num(self):
         return self.ntd_num
@@ -26,6 +26,10 @@ class Item:
                 "Hold#": self.get_hold_num()
                 }
 
+    def get_value_string(self):
+        value = "'" + self.ntd_num + "', " + str(self.quantity) + ", " + str(self.total_cost) + ", '" + self.hold_num + "')"
+        return value
+
     def set_ntd_num(self,value):
         self.ntd_num = str(value)
 
@@ -37,3 +41,17 @@ class Item:
 
     def set_hold_num(self,value):
         self.hold_num = value
+
+    def set_values_from_row(self, row):
+        try:
+            if len(row) < 4:
+                raise ValueError("Row does not have enough indicies")
+
+            self.set_ntd_num(str(row[0]))
+            self.set_quantity(row[1])
+            self.set_total_cost(row[2])
+            self.set_hold_num(str(row[3]))
+
+            return True
+        except ValueError:
+            return False
