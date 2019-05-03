@@ -43,6 +43,7 @@ class EmployeeDAO(Connect):
         connect.commit()
 
 
+
 # employeeDao = EmployeeDAO()
 #
 # employeeDao.delete_employee(99)

@@ -12,6 +12,7 @@ class Employee:
     def get_lname(self):
         return self.lname
 
+
     def get_salesperson_num(self):
         return self.salesperson_num
 
