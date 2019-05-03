@@ -35,10 +35,10 @@ class ItemDAO(Connect):
         connect = Connect()
         connect.sql_execute("update item set " +
                             "ntd# = '" + itemObject.get_ntd_num() + "'," +
-                            "quantity = " + itemObject.quantity + "," +
-                            "total_cost = " + itemObject.get_total_cost() + "," +
+                            "quantity = '" + str(itemObject.get_quantity()) + "'," +
+                            "total_cost = '" + str(itemObject.get_total_cost()) + "'," +
                             "hold# = '" + itemObject.get_hold_num() + "' " +
-                            "where ntd# = '" + itemObject.get_ntd_num() + "'")
+                            "where ntd# = '" + itemObject.get_ntd_num() + "' and hold# = '" + itemObject.get_hold_num() + "'")
         connect.commit()
 
     def delete_item(self, ntd_num, hold_num):
@@ -57,19 +57,25 @@ item.set_quantity(420.00)
 item.set_total_cost(6969.69)
 item.set_hold_num("17101")
 
-item_dao.insert_item(item)
+#item_dao.insert_item(item)
 print("just did the insert")
 stuff = item_dao.select_all()
 for things in stuff:
     print(things.get_dictionary())
 
+item.set_quantity(400.00)
+item_dao.update(item)
+print("\n\njust did the update")
+stuff = item_dao.select_all()
+for things in stuff:
+    print(things.get_dictionary())
 
-print("Testing select")
+print("\n\nTesting select")
 print(item_dao.select("N365", "18095").get_dictionary())
 
 
 item_dao.delete_item("N369", "17101")
-print("after deletion")
+print("\n\nafter deletion")
 stuff = item_dao.select_all()
 for things in stuff:
     print(things.get_dictionary())
