@@ -145,6 +145,8 @@ def create_order():
             customer_order_dao.update(customerOrder)
             done = False
 
+    print("Customer's order hold number is " + str(hold_num))
+
 
 def main():
 

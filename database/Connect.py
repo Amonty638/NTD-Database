@@ -1,8 +1,5 @@
 #!/usr/bin/python
-
 import cx_Oracle
-
-
 class Connect:
 
     def __init__(self):
