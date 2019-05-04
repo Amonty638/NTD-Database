@@ -8,6 +8,7 @@ class CustomerOrder:
         self.hold_num = " "
         self.delivery_address = " "
         self.phone_num = " "
+        self.salseperson_num = " "
 
     def get_date_made(self):
         return self.date_made
@@ -27,8 +28,11 @@ class CustomerOrder:
     def get_phone_num(self):
         return self.phone_num
 
+    def get_salesperson_num(self):
+        return self.salseperson_num
+
     def get_value_string(self):
-        return "'" + self.date_made + "', " + str(self.total_cost) + ",'" + self.description + "', '" + self.hold_num + "','" + self.delivery_address + "','" + self.phone_num + "')"
+        return "'" + self.date_made + "', " + str(self.total_cost) + ",'" + self.description + "', '" + self.hold_num + "','" + self.delivery_address + "','" + self.phone_num + "','" + self.salseperson_num + "')"
 
     def get_dictionary(self):
         return {"Date made": self.get_date_made(),
@@ -57,9 +61,12 @@ class CustomerOrder:
     def set_phone_num(self, value):
         self.phone_num = str(value)
 
+    def set_salesperson_num(self, value):
+        self.salseperson_num = str(value)
+
     def set_values_from_row(self, row):
         try:
-            if len(row) < 6:
+            if len(row) < 7:
                 raise ValueError("Row does not have enough indicies")
 
             self.set_date_made(str(row[0]))
@@ -68,6 +75,7 @@ class CustomerOrder:
             self.set_hold_num(str(row[3]))
             self.set_delivery_address(str(row[4]))
             self.set_phone_num(str(row[5]))
+            self.set_salesperson_num(str(row[6]))
 
             return True
         except ValueError:

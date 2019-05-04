@@ -5,6 +5,7 @@ from database.Customer import Customer
 from database.ProductDAO import ProductDAO
 from database.Item import Item
 from database.ItemDAO import ItemDAO
+from database.EmployeeDAO import EmployeeDAO
 
 import random
 
@@ -60,13 +61,26 @@ def create_order():
     customer_order = CustomerOrder()
     product_dao = ProductDAO()
     item_dao = ItemDAO()
+    employee_dao = EmployeeDAO()
+
+    found = False
+    list_of_employees = employee_dao.select_all()
+    salesperson_num = 0
+    while not found:
+        print("Enter in salesperson number")
+        salesperson_num = input()
+        for emp in list_of_employees:
+            if emp.get_salesperson_num() == salesperson_num:
+                found = True
+        if not found:
+            print("No employee with that salesperson number")
 
 
     print("Please enter customer phone number ")
     phone_num = input()
     customer = customer_dao.select_by_phone(str(phone_num))
     customer_order.set_phone_num(customer.get_phone())
-
+    customer_order.set_salesperson_num(salesperson_num)
 
     print("Please enter today's date ")
     date = input()
