@@ -522,7 +522,8 @@ def main():
 
 def varifyHoldNum(hold_num):
 
-    customer_order_list = CustomerDAO.select_all()
+
+    customer_order_list = customerOrderDAO.select_all()
     valid_hold_num = False
 
     for order in customer_order_list:
@@ -556,7 +557,7 @@ def calculatePieceCount(quantity, ntd_num):
 
 def varifyPhoneNum(phone_num):
 
-    customer_order_list = CustomerDAO.select_all()
+    customer_order_list = customerOrderDAO.select_all()
 
     valid_phone_num = False
 
