@@ -3,8 +3,6 @@ import ManageInventory
 import ManageCustomerOrder
 import CreateOrder
 import ManageCustomers
-from colorama import Fore, Back, Style
-
 
 def main():
 

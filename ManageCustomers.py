@@ -19,8 +19,8 @@ def main():
         print("Press 6 to change a customer's city")
         print("Press 7 to change a customer's state")
         print("Press 8 to change a customer's zip")
-        print("Press 9 to change a customer's email")
-        print("Press 10 to change a customer's street address")
+        print("Press 9 to change a customer's street address")
+        print("Press 10 to change a customer's email")
         print("Press 11 to return to Index")
         print("")
 
@@ -51,10 +51,10 @@ def main():
             changeCustomerZip()
 
         elif choice == "9":
-            changeCustomerEmail()
+            changeCustomerStreetAddress()
 
         elif choice == "10":
-            changeCustomerStreetAddress()
+            changeCustomerEmail()
 
         elif choice == "11":
             break
@@ -81,6 +81,7 @@ def viewCustomers():
         print("Phone: " + customer.get_phone())
         print("")
         print("")
+
 
 def addCustomer():
 
@@ -143,9 +144,6 @@ def verifyPhoneNum(phone_num):
     return customer_exists
 
 
-
-
-
 def deleteCustomer():
 
     while True:
@@ -179,7 +177,6 @@ def deleteCustomer():
                 break
 
 
-
 def checkForCustomerOrder(phone_num):
 
     customerOrderDao = CustomerOrderDAO()
@@ -196,24 +193,201 @@ def checkForCustomerOrder(phone_num):
     return order_exists
 
 
+def changeCustomerFname():
+    customerDao = CustomerDAO()
 
+    while True:
+        print("Enter the Phone# of a customer who's first name you would like to change")
 
+        phone_num = input()
 
+        customer_exists = verifyPhoneNum(phone_num)
 
+        if customer_exists == True:
 
-# def changeCustomerFname():
-#
-# def changeCustomerLname():
-#
-# def changeCustomerCity():
-#
-# def changeCustomerState():
-#
-# def changeCustomerZip():
-#
-# def changeCustomerEmail():
-#
-# def changeCustomerStreetAddress():
+            customer = customerDao.select_by_phone(phone_num)
+
+            print("Enter the new first name")
+
+            fname = input()
+
+            customer.set_fname(fname)
+            customerDao.update(customer)
+            print("First name changed")
+            print("")
+            break
+
+        else:
+            print("Phone# does not match an existing customer, please try again")
+            print("")
+
+def changeCustomerLname():
+    customerDao = CustomerDAO()
+
+    while True:
+        print("Enter the Phone# of a customer who's last name you would like to change")
+
+        phone_num = input()
+
+        customer_exists = verifyPhoneNum(phone_num)
+
+        if customer_exists == True:
+
+            customer = customerDao.select_by_phone(phone_num)
+
+            print("Enter the new last name")
+
+            lname = input()
+
+            customer.set_lname(lname)
+            customerDao.update(customer)
+            print("Last name changed")
+            print("")
+            break
+
+        else:
+            print("Phone# does not match an existing customer, please try again")
+            print("")
+
+def changeCustomerCity():
+    customerDao = CustomerDAO()
+
+    while True:
+        print("Enter the Phone# of a customer who's city you would like to change")
+
+        phone_num = input()
+
+        customer_exists = verifyPhoneNum(phone_num)
+
+        if customer_exists == True:
+
+            customer = customerDao.select_by_phone(phone_num)
+
+            print("Enter the new city")
+
+            city = input()
+
+            customer.set_city(city)
+            customerDao.update(customer)
+            print("City changed")
+            print("")
+            break
+
+        else:
+            print("Phone# does not match an existing customer, please try again")
+            print("")
+
+def changeCustomerState():
+    customerDao = CustomerDAO()
+
+    while True:
+        print("Enter the Phone# of a customer who's state you would like to change")
+
+        phone_num = input()
+
+        customer_exists = verifyPhoneNum(phone_num)
+
+        if customer_exists == True:
+
+            customer = customerDao.select_by_phone(phone_num)
+
+            print("Enter the new state")
+
+            state = input()
+
+            customer.set_state(state)
+            customerDao.update(customer)
+            print("State changed")
+            print("")
+            break
+
+        else:
+            print("Phone# does not match an existing customer, please try again")
+            print("")
+
+def changeCustomerZip():
+    customerDao = CustomerDAO()
+
+    while True:
+        print("Enter the Phone# of a customer who's zip code you would like to change")
+
+        phone_num = input()
+
+        customer_exists = verifyPhoneNum(phone_num)
+
+        if customer_exists == True:
+
+            customer = customerDao.select_by_phone(phone_num)
+
+            print("Enter the new zip code")
+
+            zip = input()
+
+            customer.set_zip(zip)
+            customerDao.update(customer)
+            print("Zip code changed")
+            print("")
+            break
+
+        else:
+            print("Phone# does not match an existing customer, please try again")
+            print("")
+
+def changeCustomerEmail():
+    customerDao = CustomerDAO()
+
+    while True:
+        print("Enter the Phone# of a customer who's email you would like to change")
+
+        phone_num = input()
+
+        customer_exists = verifyPhoneNum(phone_num)
+
+        if customer_exists == True:
+
+            customer = customerDao.select_by_phone(phone_num)
+
+            print("Enter the new email")
+
+            email = input()
+
+            customer.set_email(email)
+            customerDao.update(customer)
+            print("Email changed")
+            print("")
+            break
+
+        else:
+            print("Phone# does not match an existing customer, please try again")
+            print("")
+
+def changeCustomerStreetAddress():
+    customerDao = CustomerDAO()
+
+    while True:
+        print("Enter the Phone# of a customer who's street address you would like to change")
+
+        phone_num = input()
+
+        customer_exists = verifyPhoneNum(phone_num)
+
+        if customer_exists == True:
+
+            customer = customerDao.select_by_phone(phone_num)
+
+            print("Enter the new street address")
+
+            saddress = input()
+
+            customer.set_saddress(saddress)
+            customerDao.update(customer)
+            print("Street address changed")
+            print("")
+            break
+
+        else:
+            print("Phone# does not match an existing customer, please try again")
+            print("")
 
 
 
