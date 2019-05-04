@@ -136,9 +136,13 @@ def create_order():
         item_dao.insert_item(item)
 
         product = product_dao.select_by_ntd_num(item.get_ntd_num())
-        newQuantity = float(product.get_amt_in_stock()) - float(item.get_quantity())
-        ##THJSDFDSFDSFSDFDSF
-
+        newSquareFootage = float(product.get_amt_in_stock()) - float(item.get_quantity())
+        newCartonCount = int(float(newSquareFootage) / float(product.get_sf_per_carton()))
+        newPieceCount = int((float(newSquareFootage) % float(product.get_sf_per_carton())) / float(product.get_size_of_product()))
+        product.set_amt_in_stock(str(newSquareFootage))
+        product.set_carton_count(str(newCartonCount))
+        product.set_piece_count(str(newPieceCount))
+        product_dao.update(product)
 
         print("Enter another product?\n"
               "Press 1 for yes\n"
