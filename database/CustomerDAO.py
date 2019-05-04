@@ -25,9 +25,9 @@ class CustomerDAO(Connect):
         return customer
 
     def insert_customer(self, customerObject):
-        print(customerObject.get_value_string())
+        #print(customerObject.get_value_string())
         connect = Connect()
-        print("Insert into Customer values (" + customerObject.get_value_string())
+        #print("Insert into Customer values (" + customerObject.get_value_string())
         connect.sql_execute('Insert into Customer values ( ' + customerObject.get_value_string())
         connect.commit()
 
@@ -45,7 +45,7 @@ class CustomerDAO(Connect):
                             "where phone = '" + customerObject.get_phone() + "'")
         connect.commit()
 
-    def delete_customer(self, phone):
+    def delete_customer_by_phone_number(self, phone):
         connect = Connect()
         connect.sql_execute('delete from customer where phone = ' + "'" + str(phone) + "'")
         connect.commit()

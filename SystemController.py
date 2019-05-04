@@ -2,6 +2,7 @@ import ManageEmployee
 import ManageInventory
 import ManageCustomerOrder
 import CreateOrder
+import ManageCustomers
 from colorama import Fore, Back, Style
 
 
