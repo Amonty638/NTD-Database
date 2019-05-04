@@ -1,5 +1,6 @@
 from database.Product import Product
 from database.ProductDAO import ProductDAO
+from database.ItemDAO import ItemDAO
 
 def add_inventory():
     print("|----------------------------|")
@@ -203,10 +204,13 @@ def delete_inventory():
     print("|----------------------------|")
     print("")
     product_dao = ProductDAO()
+    item_dao = ItemDAO()
     product_list = product_dao.select_all()
+    item_list = item_dao.select_all()
     found = False
+    delete = True
     while not found:
-        print("Enter hold# to delete product\n"
+        print("Enter ntd# to delete product\n"
               "Enter 0 to go back to inventory screen ")
         choice = input()
         if(choice == "0"):
@@ -216,8 +220,16 @@ def delete_inventory():
                 found = True
 
         if found == True:
-            product_dao.delete_product(choice)
-            break
+            for item in item_list:
+                if item.get_ntd_num() == choice:
+                    delete = False
+                    print("Product is currently in a customer order: Unable to delete ")
+            if delete == True:
+                product_dao.delete_product(choice)
+                break
+
+        if not found:
+            print("NTD# not in database")
 
 
 

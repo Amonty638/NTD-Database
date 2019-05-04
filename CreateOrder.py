@@ -48,10 +48,15 @@ def create_new_customer():
 
 
 def generate_hold_num():
-    value = ""
-    for x in range(5):
-        value = value + str(random.randint(0,9))
-    return value
+    customer_order_dao = CustomerOrderDAO()
+    customer_order_list = customer_order_dao.select_all()
+    max = 0
+    for order in customer_order_list:
+        if int(order.get_hold_num()) > int(max):
+            max = order.get_hold_num()
+
+    max = int(max) + 1
+    return str(max)
 
 
 def create_order():
@@ -86,19 +91,7 @@ def create_order():
     date = input()
     customer_order.set_date_made(date)
 
-    list_customer_orders = customer_order_dao.select_all()
-
-    found = False
-    hold_num = 0
-    while not found:
-        hold_num = generate_hold_num()
-        for order in list_customer_orders:
-            if hold_num == order.get_hold_num():
-                found = True
-        if found:
-            found = False
-        else:
-            break
+    hold_num = generate_hold_num()
     customer_order.set_hold_num(hold_num)
 
     print("Please enter description of where tile will be located ")
