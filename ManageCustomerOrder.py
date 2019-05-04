@@ -1,10 +1,8 @@
-from database.CustomerOrder import CustomerOrder
 from database.CustomerOrderDAO import CustomerOrderDAO
 from database.CustomerDAO import CustomerDAO
 from database.ItemDAO import ItemDAO
 from database.ProductDAO import ProductDAO
 from database.Item import Item
-from database.Product import Product
 import math
 
 customerOrderDAO = CustomerOrderDAO()

@@ -50,31 +50,3 @@ class EmployeeDAO(Connect):
         connect.cur.execute('delete from employee where salesperson# = ' + "'" + str(key) + "'")
         connect.commit()
 
-
-
-#employeeDao = EmployeeDAO()
-#
-# employeeDao.delete_employee(99)
-#
-# newEmployee = Employee()
-# newEmployee.set_fname("test")
-# newEmployee.set_lname("Montano")
-# newEmployee.set_salesperson_num(6969)
-# print(newEmployee.get_values_string())
-# employeeDao.insert_employee(newEmployee)
-#
-#
-# list = employeeDao.select_all()
-#
-# for item in list:
-#     print(item.get_fname())
-
-# employee = employeeDao.select_by_salesperson_num(25)
-#
-# print(employee.get_fname())
-#
-# employee.set_fname("Zander")
-#
-# employeeDao.update(employee)
-#
-# print(employeeDao.select_by_salesperson_num(25).get_fname())

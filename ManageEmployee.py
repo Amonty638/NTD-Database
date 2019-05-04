@@ -1,4 +1,3 @@
-from database.Employee import Employee
 from database.EmployeeDAO import EmployeeDAO
 from database.CustomerOrderDAO import CustomerOrderDAO
 

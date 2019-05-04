@@ -7,8 +7,6 @@ from database.Item import Item
 from database.ItemDAO import ItemDAO
 from database.EmployeeDAO import EmployeeDAO
 
-import random
-
 
 def create_new_customer():
     customer = Customer()

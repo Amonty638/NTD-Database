@@ -35,7 +35,6 @@ class CustomerOrderDAO(Connect):
 
     def insert_customer_order(self, customerOrderObject):
         connect = Connect()
-        print("Insert into  customer_order values (" + customerOrderObject.get_value_string())
         connect.sql_execute('Insert into customer_order values ( ' + customerOrderObject.get_value_string())
         connect.commit()
 
@@ -57,44 +56,4 @@ class CustomerOrderDAO(Connect):
         connect.sql_execute("delete from customer_order where hold# = " + "'" + hold_num + "'")
         connect.commit()
 
-
-#TESTING STUFF
-# custorder = CustomerOrder()
-#custorder_dao = CustomerOrderDAO()
-# custorder.set_phone_num("123-123-1234")
-# custorder.set_delivery_address("330 Main street north reading ma")
-# custorder.set_description("Kitchen")
-# custorder.set_hold_num("98765")
-# custorder.set_total_cost(0.00)
-# custorder.set_date_made("5/3/19")
-#
-# custorder_dao.insert_customer_order(custorder)
-# stuff = custorder_dao.select_all()
-# print("Just inserted: ")
-# for things in stuff:
-#     print(things.get_dictionary())
-#
-# custorder.set_total_cost(10.00)
-# custorder_dao.update(custorder)
-#
-# print("\n\n After updateing total cost")
-# stuff = custorder_dao.select_all()
-# print("Just inserted: ")
-# for things in stuff:
-#     print(things.get_dictionary())
-#
-# print("\n\n Doing a select ")
-# print(custorder_dao.select("98765").get_dictionary())
-#
-# print("\n\n Doing a delete ")
-# custorder_dao.delete_customer_order("98765")
-# stuff = custorder_dao.select_all()
-# for things in stuff:
-#     print(things.get_dictionary())
-
-
-# orders = custorder_dao.select_by_customer_phone("123-123-1234")
-#
-# for item in orders:
-#     print(item.get_dictionary())
 
