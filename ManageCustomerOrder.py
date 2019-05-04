@@ -300,18 +300,19 @@ def main():
     print("|---------------------------|")
     print("")
 
-    customer_list = customerDAO.select_all()
-    customer__order_list = customerOrderDAO.select_all()
-    listHeader = ("Hold Num:", "Customer Name:", "Phone #:")
-    print('{0:>5} {1:>26} {2:>20}'.format(*listHeader))
-    for order in customer__order_list:
-        for customer in customer_list:
-            if customer.get_phone() == order.get_phone_num():
-                list = (order.get_hold_num(), str(customer.get_lname()) + ", " + str(customer.get_fname()), customer.get_phone())
-                print('{0:>5} {1:>30} {2:>20}'.format(*list))
+
 
     while True:
-
+        customer_list = customerDAO.select_all()
+        customer__order_list = customerOrderDAO.select_all()
+        listHeader = ("Hold Num:", "Customer Name:", "Phone #:")
+        print('{0:>5} {1:>26} {2:>20}'.format(*listHeader))
+        for order in customer__order_list:
+            for customer in customer_list:
+                if customer.get_phone() == order.get_phone_num():
+                    list = (order.get_hold_num(), str(customer.get_lname()) + ", " + str(customer.get_fname()),
+                            customer.get_phone())
+                    print('{0:>5} {1:>30} {2:>20}'.format(*list))
         print("")
         print("Press 1 to view item details associated with a hold#")
         print("Press 2 to view item details associated with a customer phone#")
