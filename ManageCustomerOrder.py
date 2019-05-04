@@ -86,7 +86,11 @@ def deleteCustomerOrderCancelled():
                         product.set_piece_count(str(newPieceCount))
                         productDAO.update(product)
 
+                        print("before delete")
                         itemDAO.delete_item(item.get_ntd_num(), hold_num)
+                        customerOrderDAO.delete_customer_order_by_hold_num(hold_num)
+                        print("Delete Completed")
+                        print("")
 
 
         elif choice == "2":

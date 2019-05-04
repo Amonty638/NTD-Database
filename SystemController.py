@@ -37,7 +37,8 @@ def index():
         print("Press 2 to manage an order")
         print("Press 3 to manage inventory")
         print("Press 4 to manage Employees")
-        print("Press 5 to log out")
+        print("Press 5 to manage customers")
+        print("Press 6 to log out")
 
         choice = input()
 
@@ -54,6 +55,9 @@ def index():
             ManageEmployee.main()
 
         elif choice == "5":
+            ManageCustomers.main()
+
+        elif choice == "6":
             print("GoodBye!")
             break
 
