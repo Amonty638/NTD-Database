@@ -150,28 +150,22 @@ def editCustomerOrder():
 
 def deleteItem(hold_num):
     order = customerOrderDAO.select_by_hold_number(hold_num)
-    print("Hold Num:" + "            " + "Customer Name:" + "            " +
-          "Date Made:" + "            " + "Delivery Address:" + "            " + "Phone#:")
-    print(order.get_hold_num() + "                " +
-          customerDAO.select_by_phone(order.get_phone_num()).get_lname() + "," +
-          customerDAO.select_by_phone(order.get_phone_num()).get_fname() + "              " +
-          order.get_date_made() + "             " +
-          order.get_delivery_address() + "          "
-          + order.get_phone_num())
-
-    print()
-
+    listHeader = ("Hold Num:", "Customer Name:", "Date Made:", "Delivery Address:", "Phone#:", "Total Cost")
+    print('{0:>5} {1:>23} {2:>12} {3:>25} {4:>20} {5:>20}'.format(*listHeader))
+    list = (order.get_hold_num(), str(customerDAO.select_by_phone(order.get_phone_num()).get_lname()) + ", " + str(
+        customerDAO.select_by_phone(order.get_phone_num()).get_fname()), order.get_date_made(),
+            order.get_delivery_address(), order.get_phone_num(), order.get_total_cost())
+    print('{0:>5} {1:>26} {2:>12} {3:>25} {4:>20} {5:>20}'.format(*list))
+    print("")
     items = itemDAO.select_by_hold_num(hold_num)
-
-    print("NTD#:" + "                " + "Quantity:" + "                 " + "Total Cost:" +
-          "           " + "Carton Count:" + "                " + "Piece count:")
+    listHeader = ("NTD#:", "Quantity:", "Cost of Product:", "Carton Count:", "Piece count:")
+    print('{0:>15} {1:>17} {2:>22} {3:>18} {4:>15}'.format(*listHeader))
     for item in items:
-        print(item.get_ntd_num() + "                 " +
-              str(item.get_quantity()) + "                      " + str(item.get_total_cost()) +
-              "                 " +
-              str(calculateCartonCount(item.get_quantity(), item.get_ntd_num()))
-              + "                            " +
-              str(calculatePieceCount(item.get_quantity(), item.get_ntd_num())))
+        list = (item.get_ntd_num(), item.get_quantity(), item.get_total_cost(),
+                calculateCartonCount(item.get_quantity(), item.get_ntd_num()),
+                calculatePieceCount(item.get_quantity(), item.get_ntd_num()))
+        print('{0:>15} {1:>17} {2:>22} {3:>18} {4:>15}'.format(*list))
+    print("")
 
 
     while True:
@@ -245,28 +239,22 @@ def verifyNTDNumAdd(ntd_num):
 
 def addItem(hold_num):
     order = customerOrderDAO.select_by_hold_number(hold_num)
-    print("Hold Num:" + "            " + "Customer Name:" + "            " +
-          "Date Made:" + "            " + "Delivery Address:" + "            " + "Phone#:")
-    print(order.get_hold_num() + "                " +
-          customerDAO.select_by_phone(order.get_phone_num()).get_lname() + "," +
-          customerDAO.select_by_phone(order.get_phone_num()).get_fname() + "              " +
-          order.get_date_made() + "             " +
-          order.get_delivery_address() + "          "
-          + order.get_phone_num())
-
-    print()
-
+    listHeader = ("Hold Num:", "Customer Name:", "Date Made:", "Delivery Address:", "Phone#:", "Total Cost")
+    print('{0:>5} {1:>23} {2:>12} {3:>25} {4:>20} {5:>20}'.format(*listHeader))
+    list = (order.get_hold_num(), str(customerDAO.select_by_phone(order.get_phone_num()).get_lname()) + ", " + str(
+        customerDAO.select_by_phone(order.get_phone_num()).get_fname()), order.get_date_made(),
+            order.get_delivery_address(), order.get_phone_num(), order.get_total_cost())
+    print('{0:>5} {1:>26} {2:>12} {3:>25} {4:>20} {5:>20}'.format(*list))
+    print("")
     items = itemDAO.select_by_hold_num(hold_num)
-
-    print("NTD#:" + "                " + "Quantity:" + "                 " + "Total Cost:" +
-          "           " + "Carton Count:" + "                " + "Piece count:")
+    listHeader = ("NTD#:", "Quantity:", "Cost of Product:", "Carton Count:", "Piece count:")
+    print('{0:>15} {1:>17} {2:>22} {3:>18} {4:>15}'.format(*listHeader))
     for item in items:
-        print(item.get_ntd_num() + "                 " +
-              str(item.get_quantity()) + "                      " + str(item.get_total_cost()) +
-              "                 " +
-              str(calculateCartonCount(item.get_quantity(), item.get_ntd_num()))
-              + "                            " +
-              str(calculatePieceCount(item.get_quantity(), item.get_ntd_num())))
+        list = (item.get_ntd_num(), item.get_quantity(), item.get_total_cost(),
+                calculateCartonCount(item.get_quantity(), item.get_ntd_num()),
+                calculatePieceCount(item.get_quantity(), item.get_ntd_num()))
+        print('{0:>15} {1:>17} {2:>22} {3:>18} {4:>15}'.format(*list))
+    print("")
 
     while True:
         print("Enter the NTD# for the item you would like to add or press 1 to quit")
@@ -368,17 +356,17 @@ def main():
 
                     else:
                         order = customerOrderDAO.select_by_hold_number(hold_num)
-                        listHeader = ("Hold Num:", "Customer Name:", "Date Made:", "Delivery Address:", "Phone#:")
-                        print('{0:>5} {1:>23} {2:>12} {3:>25} {4:>20}'.format(*listHeader))
-                        list = (order.get_hold_num(), str(customerDAO.select_by_phone(order.get_phone_num()).get_lname()) + ", " + str(customerDAO.select_by_phone(order.get_phone_num()).get_fname()), order.get_date_made(), order.get_delivery_address(), order.get_phone_num())
-                        print('{0:>5} {1:>26} {2:>12} {3:>25} {4:>20}'.format(*list))
+                        listHeader = ("Hold Num:", "Customer Name:", "Date Made:", "Delivery Address:", "Phone#:", "Total Cost")
+                        print('{0:>5} {1:>23} {2:>12} {3:>25} {4:>20} {5:>20}'.format(*listHeader))
+                        list = (order.get_hold_num(), str(customerDAO.select_by_phone(order.get_phone_num()).get_lname()) + ", " + str(customerDAO.select_by_phone(order.get_phone_num()).get_fname()), order.get_date_made(), order.get_delivery_address(), order.get_phone_num(), order.get_total_cost())
+                        print('{0:>5} {1:>26} {2:>12} {3:>25} {4:>20} {5:>20}'.format(*list))
                         print("")
                         items = itemDAO.select_by_hold_num(hold_num)
-                        listHeader = ("NTD#:", "Quantity:", "Total Cost:", "Carton Count:", "Piece count:")
-                        print('{0:>15} {1:>17} {2:>18} {3:>18} {4:>15}'.format(*listHeader))
+                        listHeader = ("NTD#:", "Quantity:", "Cost of Product:", "Carton Count:", "Piece count:")
+                        print('{0:>15} {1:>17} {2:>22} {3:>18} {4:>15}'.format(*listHeader))
                         for item in items:
                             list = (item.get_ntd_num(), item.get_quantity(), item.get_total_cost(), calculateCartonCount(item.get_quantity(),item.get_ntd_num()), calculatePieceCount(item.get_quantity(),item.get_ntd_num()))
-                            print('{0:>15} {1:>17} {2:>18} {3:>18} {4:>15}'.format(*list))
+                            print('{0:>15} {1:>17} {2:>22} {3:>18} {4:>15}'.format(*list))
                         print("")
                 elif choice2 == "2":
                     break
@@ -409,11 +397,11 @@ def main():
 
                     else:
                         orders = customerOrderDAO.select_by_customer_phone(phone_num)
-                        listHeader = ("Hold Num:", "Customer Name:", "Date Made:", "Delivery Address:", "Phone#:")
-                        print('{0:>5} {1:>23} {2:>12} {3:>25} {4:>20}'.format(*listHeader))
+                        listHeader = ("Hold Num:", "Customer Name:", "Date Made:", "Delivery Address:", "Phone#:", "Total Cost:")
+                        print('{0:>5} {1:>23} {2:>12} {3:>25} {4:>20} {5:>20}'.format(*listHeader))
                         for order in orders:
-                            list = (order.get_hold_num(), str(customerDAO.select_by_phone(order.get_phone_num()).get_lname()) + ", " + str(customerDAO.select_by_phone(order.get_phone_num()).get_fname()), order.get_date_made(), order.get_delivery_address(), order.get_phone_num())
-                            print('{0:>5} {1:>26} {2:>12} {3:>25} {4:>20}'.format(*list))
+                            list = (order.get_hold_num(), str(customerDAO.select_by_phone(order.get_phone_num()).get_lname()) + ", " + str(customerDAO.select_by_phone(order.get_phone_num()).get_fname()), order.get_date_made(), order.get_delivery_address(), order.get_phone_num(), order.get_total_cost())
+                            print('{0:>5} {1:>26} {2:>12} {3:>25} {4:>20} {5:>20}'.format(*list))
 
                         print()
                         print("")
@@ -438,17 +426,17 @@ def main():
                                 else:
                                     order = customerOrderDAO.select_by_hold_number(hold_num)
                                     listHeader = (
-                                    "Hold Num:", "Customer Name:", "Date Made:", "Delivery Address:", "Phone#:")
-                                    print('{0:>5} {1:>23} {2:>12} {3:>25} {4:>20}'.format(*listHeader))
-                                    list = (order.get_hold_num(), str(customerDAO.select_by_phone(order.get_phone_num()).get_lname()) + ", " + str(customerDAO.select_by_phone(order.get_phone_num()).get_fname()), order.get_date_made(), order.get_delivery_address(), order.get_phone_num())
-                                    print(print('{0:>5} {1:>26} {2:>12} {3:>25} {4:>20}'.format(*list)))
+                                    "Hold Num:", "Customer Name:", "Date Made:", "Delivery Address:", "Phone#:", "Total Cost of Order")
+                                    print('{0:>5} {1:>23} {2:>12} {3:>25} {4:>20} {5:>20}'.format(*listHeader))
+                                    list = (order.get_hold_num(), str(customerDAO.select_by_phone(order.get_phone_num()).get_lname()) + ", " + str(customerDAO.select_by_phone(order.get_phone_num()).get_fname()), order.get_date_made(), order.get_delivery_address(), order.get_phone_num(), order.get_total_cost())
+                                    print(print('{0:>5} {1:>26} {2:>12} {3:>25} {4:>20} {5:>20}'.format(*list)))
                                     items = itemDAO.select_by_hold_num(hold_num)
                                     print("")
-                                    listHeader = ("NTD#:", "Quantity:", "Total Cost:", "Carton Count:", "Piece count:")
-                                    print('{0:>15} {1:>17} {2:>18} {3:>18} {4:>15}'.format(*listHeader))
+                                    listHeader = ("NTD#:", "Quantity:", "Cost of Product:", "Carton Count:", "Piece count:")
+                                    print('{0:>15} {1:>17} {2:>22} {3:>18} {4:>15}'.format(*listHeader))
                                     for item in items:
                                         list = (item.get_ntd_num(), item.get_quantity(), item.get_total_cost(), calculateCartonCount(item.get_quantity(), item.get_ntd_num()), calculatePieceCount(item.get_quantity(), item.get_ntd_num()))
-                                        print('{0:>15} {1:>17} {2:>18} {3:>18} {4:>15}'.format(*list))
+                                        print('{0:>15} {1:>17} {2:>22} {3:>18} {4:>15}'.format(*list))
                                     print("")
                             elif choice3 == "2":
                                 break
