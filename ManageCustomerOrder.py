@@ -13,8 +13,6 @@ itemDAO = ItemDAO()
 productDAO = ProductDAO()
 
 def deleteCustomerOrderPickUp():
-
-
     while True:
 
         print("Press 1 to enter hold#")
