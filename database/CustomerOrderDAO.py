@@ -52,7 +52,7 @@ class CustomerOrderDAO(Connect):
                             "where hold# = '" + customerOrderObject.get_hold_num() + "'")
         connect.commit()
 
-    def delete_customer_order(self, hold_num):
+    def delete_customer_order_by_hold_num(self, hold_num):
         connect = Connect()
         connect.sql_execute("delete from customer_order where hold# = " + "'" + hold_num + "'")
         connect.commit()

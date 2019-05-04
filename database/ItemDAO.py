@@ -57,6 +57,11 @@ class ItemDAO(Connect):
         connect.sql_execute("delete from item where ntd# = " + "'" + ntd_num + "' and hold# = " + "'" + hold_num + "'")
         connect.commit()
 
+    def delete_item_using_hold_num(self, key):
+        connect = Connect()
+        connect.sql_execute("delete from item where hold# = " + "'" + key + "'")
+        connect.commit()
+
 
 #TESTING STUFF
 #item_dao = ItemDAO()
