@@ -1,7 +1,7 @@
 import ManageEmployee
 import SearchInventory
 import ManageInventory
-import SearchOrder
+import ManageCustomerOrder
 import CreateOrder
 from colorama import Fore, Back, Style
 
@@ -35,7 +35,7 @@ def index():
         print("|------------------------|")
         print("")
         print("Press 1 to create an order")
-        print("Press 2 to search for an order")
+        print("Press 2 to manage an order")
         print("Press 3 to manage inventory")
         print("Press 4 to manage Employees")
         print("Press 5 to log out")
@@ -46,7 +46,7 @@ def index():
             CreateOrder.main()
 
         elif choice == "2":
-            SearchOrder.main()
+            ManageCustomerOrder.main()
 
         elif choice == "3":
             ManageInventory.main()
