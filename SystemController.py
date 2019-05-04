@@ -1,4 +1,4 @@
-import SearchByEmployee
+import ManageEmployee
 import SearchInventory
 import ManageInventory
 import SearchOrder
@@ -37,8 +37,8 @@ def index():
         print("Press 1 to create an order")
         print("Press 2 to search for an order")
         print("Press 3 to manage inventory")
-        print("Press 5 to search by Employee")
-        print("Press 6 to log out")
+        print("Press 4 to manage Employees")
+        print("Press 5 to log out")
 
         choice = input()
 
@@ -52,12 +52,9 @@ def index():
             ManageInventory.main()
 
         elif choice == "4":
-            SearchInventory.main()
+            ManageEmployee.main()
 
         elif choice == "5":
-            SearchByEmployee.main()
-
-        elif choice == "6":
             print("GoodBye!")
             break
 

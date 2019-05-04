@@ -134,7 +134,12 @@ def create_order():
         item.set_total_cost(str(cost))
         item.set_hold_num(hold_num)
         item_dao.insert_item(item)
-        ##WE NEED TO ALSO CHANGE THE AMOUNT IN STOCK BUT WE WILL DO THIS AFTER WE MAKE SURE EVERYTHING IS WORKING
+
+        product = product_dao.select_by_ntd_num(item.get_ntd_num())
+        newQuantity = float(product.get_amt_in_stock()) - float(item.get_quantity())
+
+
+
         print("Enter another product?\n"
               "Press 1 for yes\n"
               "Press 2 to complete the order")

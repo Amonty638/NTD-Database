@@ -68,6 +68,11 @@ def add_inventory():
 
 
 def edit_inventory():
+    print("|----------------------------|")
+    print("|        Edit Inventory      |")
+    print("|----------------------------|")
+    print("")
+
     product_dao = ProductDAO()
     list_of_products = product_dao.select_all()
     found = True
@@ -95,11 +100,11 @@ def edit_inventory():
               "Press 9 to change square footage in a carton\n"
               "Press 10 to change number of cartons in stock\n"
               "Press 11 to change size of product in square feet\n"
-              "Press 12 to change number of pieces in stock \n "
+              "Press 12 to change number of pieces in stock\n"
               "Press 13 to return back to inventory manager")
 
         choice = input()
-
+        print(product.get_dictionary())
         if choice == "1":
             print("Enter description of product")
             product.set_ntd_description(input())
@@ -193,10 +198,39 @@ def edit_inventory():
 
 
 def delete_inventory():
-    return 0
+    print("|----------------------------|")
+    print("|      Delete Inventory      |")
+    print("|----------------------------|")
+    print("")
+    product_dao = ProductDAO()
+    product_list = product_dao.select_all()
+    found = False
+    while not found:
+        print("Enter hold# to delete product\n"
+              "Enter 0 to go back to inventory screen ")
+        choice = input()
+        if(choice == "0"):
+            break
+        for product in product_list:
+            if product.get_ntd_num() == choice:
+                found = True
+
+        if found == True:
+            product_dao.delete_product(choice)
+            break
+
+
 
 def view_inventory():
-    return 0
+    product_dao = ProductDAO()
+    product_list = product_dao.select_all()
+    for product in product_list:
+        print(product.get_ntd_num())
+        print(product.get_dictionary())
+        print("-------------------------------------------------------------------------------------------------------"
+              "-------------------------------------------------------------------------------------------------------"
+              "--------------------------------------------------------------------------------------------------------"
+              "-----------------------------------------------------------------------------------------------------\n")
 
 def main():
     while True:

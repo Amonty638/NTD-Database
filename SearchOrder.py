@@ -10,6 +10,8 @@ customerDAO = CustomerDAO()
 itemDAO = ItemDAO()
 productDAO = ProductDAO()
 
+
+
 def main():
 
     print("|-------------------------------|")
