@@ -456,8 +456,6 @@ def main():
                             else:
                                 print("Invalid entry, please try again")
 
-
-
                 elif choice2 == "2":
                     break
 
