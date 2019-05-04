@@ -1,5 +1,4 @@
 import ManageEmployee
-import SearchInventory
 import ManageInventory
 import ManageCustomerOrder
 import CreateOrder

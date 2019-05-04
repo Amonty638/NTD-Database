@@ -137,7 +137,7 @@ def create_order():
 
         product = product_dao.select_by_ntd_num(item.get_ntd_num())
         newQuantity = float(product.get_amt_in_stock()) - float(item.get_quantity())
-
+        ##THJSDFDSFDSFSDFDSF
 
 
         print("Enter another product?\n"
