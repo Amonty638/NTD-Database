@@ -105,17 +105,12 @@ def editCustomerOrder():
         choice = input()
 
         if choice == "1":
-
             print("Enter hold#")
-
             hold_num = input()
-
             valid_hold_num = varifyHoldNum(hold_num)
-
             if valid_hold_num == False:
                 print("The hold# you tried to search by is invalid, please try again")
                 print("")
-
             else:
                 while True:
                     print("Press 1 to delete an item")
@@ -255,49 +250,51 @@ def addItem(hold_num):
 
     while True:
         print("Enter the NTD# for the item you would like to add or press 1 to quit")
-
         ntd_num = input()
-
         if ntd_num == "1":
             break
-
         valid_ntd_num = verifyNTDNumAdd(ntd_num)
-
         if valid_ntd_num == False:
             print("The NTD# you tried to search by is invalid, please try again")
             print("")
-
         else:
+            item_list = itemDAO.select_by_hold_num(hold_num)
+            found = False
+            for item in item_list:
+                if item.get_ntd_num() == ntd_num:
+                    print("Item is already in customer order")
+                    found = True
 
-            item = Item()
-            item.set_hold_num(hold_num)
-            item.set_ntd_num(ntd_num)
+            if not found:
+                item = Item()
+                item.set_hold_num(hold_num)
+                item.set_ntd_num(ntd_num)
 
-            print("Enter desired quantity of product, if grout enter number of bags, if tile enter square footage")
-            item.set_quantity(input())
-            cost = float(item.get_quantity()) * float(
-                productDAO.select_by_ntd_num(item.get_ntd_num()).get_cost_per_sf())
+                print("Enter desired quantity of product, if grout enter number of bags, if tile enter square footage")
+                item.set_quantity(input())
+                cost = float(item.get_quantity()) * float(
+                    productDAO.select_by_ntd_num(item.get_ntd_num()).get_cost_per_sf())
 
 
-            product = productDAO.select_by_ntd_num(ntd_num)
-            newSquareFootage = float(product.get_amt_in_stock()) - float(item.get_quantity())
-            newCartonCount = int(float(newSquareFootage) / float(product.get_sf_per_carton()))
-            newPieceCount = int(
-                (float(newSquareFootage) % float(product.get_sf_per_carton())) / float(product.get_size_of_product()))
-            product.set_amt_in_stock(str(newSquareFootage))
-            product.set_carton_count(str(newCartonCount))
-            product.set_piece_count(str(newPieceCount))
-            productDAO.update(product)
+                product = productDAO.select_by_ntd_num(ntd_num)
+                newSquareFootage = float(product.get_amt_in_stock()) - float(item.get_quantity())
+                newCartonCount = int(float(newSquareFootage) / float(product.get_sf_per_carton()))
+                newPieceCount = int(
+                    (float(newSquareFootage) % float(product.get_sf_per_carton())) / float(product.get_size_of_product()))
+                product.set_amt_in_stock(str(newSquareFootage))
+                product.set_carton_count(str(newCartonCount))
+                product.set_piece_count(str(newPieceCount))
+                productDAO.update(product)
 
-            total_cost_of_item = float(cost)
-            item.set_total_cost(str(cost))
-            item.set_hold_num(hold_num)
-            itemDAO.insert_item(item)
+                total_cost_of_item = float(cost)
+                item.set_total_cost(str(cost))
+                item.set_hold_num(hold_num)
+                itemDAO.insert_item(item)
 
-            customerOrder = customerOrderDAO.select_by_hold_number(hold_num)
-            customerOrder.set_total_cost(float(total_cost_of_item) + float(customerOrder.get_total_cost()))
-            customerOrderDAO.update(customerOrder)
-            break
+                customerOrder = customerOrderDAO.select_by_hold_number(hold_num)
+                customerOrder.set_total_cost(float(total_cost_of_item) + float(customerOrder.get_total_cost()))
+                customerOrderDAO.update(customerOrder)
+                break
 
 def main():
 
