@@ -88,7 +88,6 @@ def deleteCustomerOrderCancelled():
                         print("Delete Completed")
                         print("")
 
-
         elif choice == "2":
             break
 
