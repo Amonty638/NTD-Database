@@ -21,7 +21,7 @@ def main():
         print("Press 8 to change a customer's zip")
         print("Press 9 to change a customer's street address")
         print("Press 10 to change a customer's email")
-        print("Press 11 to return to Index")
+        print("Press 11 to return to index page")
         print("")
 
         choice = input()

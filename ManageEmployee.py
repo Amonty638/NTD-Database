@@ -91,7 +91,7 @@ def main():
         print("Press 1 to view an Employee's customer orders\n"
               "Press 2 to edit an Employee\n"
               "Press 3 to add an Employee\n"
-              "Press 9 to go to return to Index")
+              "Press 9 to go to return to index page")
         choice = input()
 
         if choice == "1":

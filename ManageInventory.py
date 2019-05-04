@@ -255,7 +255,7 @@ def main():
         print("Press 2 to edit inventory")
         print("Press 3 to delete inventory")
         print("Press 4 to view inventory")
-        print("Press 9 to return to index")
+        print("Press 9 to return to index page")
         choice = input()
         if(choice == "1"):
             add_inventory()

@@ -339,7 +339,7 @@ def main():
         print("Press 3 to delete a customer order that was picked up")
         print("Press 4 to delete a customer order that was cancelled")
         print("Press 5 to edit a customer order")
-        print("Press 9 to return to Index")
+        print("Press 9 to return to index page")
         print("")
 
         choice = input()
