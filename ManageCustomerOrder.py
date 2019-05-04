@@ -4,6 +4,7 @@ from database.CustomerDAO import CustomerDAO
 from database.ItemDAO import ItemDAO
 from database.ProductDAO import ProductDAO
 from database.Item import Item
+from database.Product import Product
 import math
 
 customerOrderDAO = CustomerOrderDAO()
@@ -180,7 +181,7 @@ def deleteItem(hold_num):
         if ntd_num == "1":
             break
 
-        valid_ntd_num = verifyNTDNum(ntd_num, items)
+        valid_ntd_num = verifyNTDNumDel(ntd_num, items)
 
         if valid_ntd_num == False:
             print("The hold# you tried to search by is invalid, please try again")
@@ -188,7 +189,7 @@ def deleteItem(hold_num):
 
         else:
 
-            customerOrder = customerOrderDAO.select_by_hold_number(hold_num).get_total_cost()
+            customerOrder = customerOrderDAO.select_by_hold_number(hold_num)
 
             total_cost_of_order = customerOrder.get_total_cost()
 
@@ -215,11 +216,24 @@ def deleteItem(hold_num):
             break
 
 
-def verifyNTDNum(ntd_num,items):
+def verifyNTDNumDel(ntd_num,items):
     valid_ntd_num = False
+
 
     for item in items:
         if item.get_ntd_num() == ntd_num:
+            valid_ntd_num = True
+            break
+
+    return valid_ntd_num
+
+def verifyNTDNumAdd(ntd_num):
+    valid_ntd_num = False
+
+    products = productDAO.select_all()
+
+    for product in products:
+        if product.get_ntd_num() == ntd_num:
             valid_ntd_num = True
             break
 
@@ -259,27 +273,42 @@ def addItem(hold_num):
         if ntd_num == "1":
             break
 
-        valid_ntd_num = verifyNTDNum(ntd_num, items)
+        valid_ntd_num = verifyNTDNumAdd(ntd_num)
 
         if valid_ntd_num == False:
-            print("The hold# you tried to search by is invalid, please try again")
+            print("The NTD# you tried to search by is invalid, please try again")
             print("")
 
         else:
+
             item = Item()
             item.set_hold_num(hold_num)
             item.set_ntd_num(ntd_num)
-            total_cost = 0
+
             print("Enter desired quantity of product, if grout enter number of bags, if tile enter square footage")
             item.set_quantity(input())
             cost = float(item.get_quantity()) * float(
                 productDAO.select_by_ntd_num(item.get_ntd_num()).get_cost_per_sf())
 
-            total_cost_of_item = float(total_cost) + float(cost)
+
+            product = productDAO.select_by_ntd_num(ntd_num)
+            newSquareFootage = float(product.get_amt_in_stock()) - float(item.get_quantity())
+            newCartonCount = int(float(newSquareFootage) / float(product.get_sf_per_carton()))
+            newPieceCount = int(
+                (float(newSquareFootage) % float(product.get_sf_per_carton())) / float(product.get_size_of_product()))
+            product.set_amt_in_stock(str(newSquareFootage))
+            product.set_carton_count(str(newCartonCount))
+            product.set_piece_count(str(newPieceCount))
+            productDAO.update(product)
+
+            total_cost_of_item = float(cost)
             item.set_total_cost(str(cost))
             item.set_hold_num(hold_num)
             itemDAO.insert_item(item)
 
+            customerOrder = customerOrderDAO.select_by_hold_number(hold_num)
+            customerOrder.set_total_cost(float(total_cost_of_item) + float(customerOrder.get_total_cost()))
+            customerOrderDAO.update(customerOrder)
             break
 
 def main():
