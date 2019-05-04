@@ -9,7 +9,6 @@ class Connect:
         self.dsn_tns = cx_Oracle.makedsn(self.ip, self.port, self.SID)
         self.db = cx_Oracle.connect('wdutton', 'csrocks55', self.dsn_tns)
         self.cur = self.db.cursor()
-        self.cur.execute('select * from employee')
 
     def __del__(self):
         self.cur.close()
