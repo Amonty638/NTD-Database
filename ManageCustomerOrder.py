@@ -83,8 +83,7 @@ def deleteCustomerOrderCancelled():
 
                         itemDAO.delete_item(item.get_ntd_num(), hold_num)
                         customerOrderDAO.delete_customer_order_by_hold_num(hold_num)
-                        print("Delete Completed")
-                        print("")
+                print("Delete Completed")
 
         elif choice == "2":
             break

@@ -143,9 +143,9 @@ def create_order():
             customerOrder = customer_order_dao.select_by_hold_number(customer_order.get_hold_num())
             customerOrder.set_total_cost(total_cost)
             customer_order_dao.update(customerOrder)
+            print("Customer's order hold number is " + str(hold_num))
             done = False
 
-    print("Customer's order hold number is " + str(hold_num))
 
 
 def main():
