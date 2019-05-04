@@ -4,6 +4,21 @@ import ManageCustomerOrder
 import CreateOrder
 import ManageCustomers
 
+'''
+
+
+
+Project completed by Robbie Dutton and Alexander Montano
+
+
+
+
+
+
+
+'''
+
+
 def main():
 
     print("|--------------------------------------------------------------|")
