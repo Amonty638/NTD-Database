@@ -14,7 +14,6 @@ productDAO = ProductDAO()
 
 def deleteCustomerOrderPickUp():
 
-    customer_order_list = customerOrderDAO.select_all()
 
     while True:
 
@@ -29,7 +28,7 @@ def deleteCustomerOrderPickUp():
 
             hold_num = input()
 
-            valid_hold_num = varifyHoldNum(hold_num, customer_order_list)
+            valid_hold_num = varifyHoldNum(hold_num)
 
             if valid_hold_num == False:
                 print("The hold# you tried to search by is invalid, please try again")
@@ -48,7 +47,7 @@ def deleteCustomerOrderPickUp():
             print("Invalid entry, please try again")
 
 def deleteCustomerOrderCancelled():
-    customer_order_list = customerOrderDAO.select_all()
+
 
     while True:
 
@@ -63,7 +62,7 @@ def deleteCustomerOrderCancelled():
 
             hold_num = input()
 
-            valid_hold_num = varifyHoldNum(hold_num, customer_order_list)
+            valid_hold_num = varifyHoldNum(hold_num)
 
             if valid_hold_num == False:
                 print("The hold# you tried to search by is invalid, please try again")
@@ -86,7 +85,6 @@ def deleteCustomerOrderCancelled():
                         product.set_piece_count(str(newPieceCount))
                         productDAO.update(product)
 
-                        print("before delete")
                         itemDAO.delete_item(item.get_ntd_num(), hold_num)
                         customerOrderDAO.delete_customer_order_by_hold_num(hold_num)
                         print("Delete Completed")
@@ -100,7 +98,7 @@ def deleteCustomerOrderCancelled():
             print("Invalid entry, please try again")
 
 def editCustomerOrder():
-    customer_order_list = customerOrderDAO.select_all()
+
 
     while True:
 
@@ -115,7 +113,7 @@ def editCustomerOrder():
 
             hold_num = input()
 
-            valid_hold_num = varifyHoldNum(hold_num, customer_order_list)
+            valid_hold_num = varifyHoldNum(hold_num)
 
             if valid_hold_num == False:
                 print("The hold# you tried to search by is invalid, please try again")
@@ -185,7 +183,7 @@ def deleteItem(hold_num):
         if ntd_num == "1":
             break
 
-        valid_ntd_num = verifyNTDNumDel(ntd_num, items)
+        valid_ntd_num = verifyNTDNumDel(ntd_num, hold_num)
 
         if valid_ntd_num == False:
             print("The hold# you tried to search by is invalid, please try again")
@@ -220,9 +218,10 @@ def deleteItem(hold_num):
             break
 
 
-def verifyNTDNumDel(ntd_num,items):
-    valid_ntd_num = False
+def verifyNTDNumDel(ntd_num,hold_num):
 
+    items = itemDAO.select_by_hold_num(hold_num)
+    valid_ntd_num = False
 
     for item in items:
         if item.get_ntd_num() == ntd_num:
@@ -360,7 +359,7 @@ def main():
 
                     hold_num = input()
 
-                    valid_hold_num = varifyHoldNum(hold_num,customer__order_list)
+                    valid_hold_num = varifyHoldNum(hold_num)
 
                     if valid_hold_num == False:
                         print("The hold# you tried to search by is invalid, please try again")
@@ -413,7 +412,7 @@ def main():
 
                     phone_num = input()
 
-                    valid_phone_num = varifyPhoneNum(phone_num, customer__order_list)
+                    valid_phone_num = varifyPhoneNum(phone_num)
 
                     if valid_phone_num == False:
                         print("The phone# you tried to search by is invalid, please try again")
@@ -458,7 +457,7 @@ def main():
 
                                 hold_num = input()
 
-                                valid_hold_num = varifyHoldNum(hold_num, customer__order_list)
+                                valid_hold_num = varifyHoldNum(hold_num)
 
                                 if valid_hold_num == False:
                                     print("The hold# you tried to search by is invalid, please try again")
@@ -521,8 +520,9 @@ def main():
             print("Invalid entry please try again")
 
 
-def varifyHoldNum(hold_num,customer_order_list):
+def varifyHoldNum(hold_num):
 
+    customer_order_list = CustomerDAO.select_all()
     valid_hold_num = False
 
     for order in customer_order_list:
@@ -554,7 +554,9 @@ def calculatePieceCount(quantity, ntd_num):
     return str(piece_count)
 
 
-def varifyPhoneNum(phone_num,customer_order_list):
+def varifyPhoneNum(phone_num):
+
+    customer_order_list = CustomerDAO.select_all()
 
     valid_phone_num = False
 
