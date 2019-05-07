@@ -266,9 +266,14 @@ def addItem(hold_num):
                 item = Item()
                 item.set_hold_num(hold_num)
                 item.set_ntd_num(ntd_num)
-
-                print("Enter desired quantity of product, if grout enter number of bags, if tile enter square footage")
-                item.set_quantity(input())
+                while True:
+                    print("Enter desired quantity of product, if grout enter number of bags, if tile enter square footage")
+                    desired_quantity = input()
+                    if float(desired_quantity) > float(productDAO.select_by_ntd_num(ntd_num).get_amt_in_stock()):
+                        print("Not enough quantity in warehouse!")
+                    else:
+                        break
+                item.set_quantity(desired_quantity)
                 cost = float(item.get_quantity()) * float(
                     productDAO.select_by_ntd_num(item.get_ntd_num()).get_cost_per_sf())
 

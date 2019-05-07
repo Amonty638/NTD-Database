@@ -101,8 +101,6 @@ def create_order():
 
     customer_order_dao.insert_customer_order(customer_order)
 
-
-
     list_of_products = product_dao.select_all()
     done = True
     total_cost = 0
@@ -118,8 +116,15 @@ def create_order():
                     found = True
             if not found:
                 print("Wrong NTD number")
-        print("Enter desired quantity of product, if grout enter number of bags, if tile enter square footage")
-        item.set_quantity(input())
+
+        while True:
+            print("Enter desired quantity of product, if grout enter number of bags, if tile enter square footage")
+            desired_quantity = input()
+            if float(desired_quantity) > float(product_dao.select_by_ntd_num(ntd_num).get_amt_in_stock()):
+                print("Not enough quantity in warehouse!")
+            else:
+                break
+        item.set_quantity(desired_quantity)
         cost = float(item.get_quantity()) * float(product_dao.select_by_ntd_num(item.get_ntd_num()).get_cost_per_sf())
         total_cost = float(total_cost) + float(cost)
         item.set_total_cost(str(cost))
