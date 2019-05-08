@@ -1,12 +1,13 @@
 from database.Customer import Customer
 from database.CustomerDAO import CustomerDAO
 from database.CustomerOrderDAO import CustomerOrderDAO
+from colorama import Fore,Back,Style
 
 
 def main():
-    print("|----------------------------|")
-    print("|        Edit Customer       |")
-    print("|----------------------------|")
+    print(Fore.LIGHTCYAN_EX + "|---------------------------|")
+    print("|      Manage Customer      |")
+    print("|---------------------------|")
     print("")
 
     while True:

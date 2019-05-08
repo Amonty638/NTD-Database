@@ -4,6 +4,7 @@ import ManageCustomerOrder
 import CreateOrder
 import ManageCustomers
 
+from colorama import Fore,Back,Style
 '''
 
 
@@ -43,7 +44,7 @@ def index():
 
 
     while True:
-        print("|------------------------|")
+        print(Fore.MAGENTA + "|------------------------|")
         print("|  Welcome to the Index  |")
         print("|------------------------|")
         print("")

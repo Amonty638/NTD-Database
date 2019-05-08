@@ -6,7 +6,7 @@ from database.ProductDAO import ProductDAO
 from database.Item import Item
 from database.ItemDAO import ItemDAO
 from database.EmployeeDAO import EmployeeDAO
-
+from colorama import Fore,Back,Style
 
 def create_new_customer():
     customer = Customer()
@@ -156,7 +156,7 @@ def create_order():
 def main():
 
     while True:
-        print("|------------------------|")
+        print(Fore.RED + "|------------------------|")
         print("|      Create Order      |")
         print("|------------------------|")
         print("")

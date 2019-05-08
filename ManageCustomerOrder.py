@@ -4,6 +4,7 @@ from database.ItemDAO import ItemDAO
 from database.ProductDAO import ProductDAO
 from database.Item import Item
 import math
+from colorama import Fore,Back,Style
 
 customerOrderDAO = CustomerOrderDAO()
 customerDAO = CustomerDAO()
@@ -300,7 +301,7 @@ def addItem(hold_num):
 
 def main():
 
-    print("|---------------------------|")
+    print(Fore.BLUE + "|---------------------------|")
     print("|  Welcome to Manage Order  |")
     print("|---------------------------|")
     print("")

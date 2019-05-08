@@ -1,5 +1,6 @@
 from database.EmployeeDAO import EmployeeDAO
 from database.CustomerOrderDAO import CustomerOrderDAO
+from colorama import Fore,Back,Style
 
 def view_employee_orders():
     print("|----------------------------|")
@@ -82,7 +83,7 @@ def edit_employee():
 
 def main():
     while True:
-        print("|----------------------------|")
+        print(Fore.LIGHTGREEN_EX + "|----------------------------|")
         print("|          Employee          |")
         print("|----------------------------|")
         print("")

@@ -1,6 +1,7 @@
 from database.Product import Product
 from database.ProductDAO import ProductDAO
 from database.ItemDAO import ItemDAO
+from colorama import Fore,Back,Style
 
 def add_inventory():
     print("|----------------------------|")
@@ -246,7 +247,7 @@ def view_inventory():
 
 def main():
     while True:
-        print("|----------------------------|")
+        print(Fore.YELLOW + "|----------------------------|")
         print("|          Inventory         |")
         print("|----------------------------|")
         print("")
